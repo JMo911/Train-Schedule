@@ -3,15 +3,15 @@
     color: whitesmoke; 
 }
 
-.list-group{
+/* .list-group{
     border: 1px solid  rgb(156,49,57);
-}
+} */
 
 .list-group-item{
     width: 100%
 }
 
 form{
-    border: 1px solid  rgb(156,49,57);
+    /* border: 1px solid  rgb(156,49,57); */
     margin-top: 20px;
 }
