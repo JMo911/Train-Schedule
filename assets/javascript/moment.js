@@ -23,64 +23,6 @@
 var mydatabase = firebase.database();
 
 
-// database.ref().on("value", function(snapshot){
-//     console.log(snapshot.val());
-// });
-
-// var trains = {
-//   "Motown": {
-//     "data-name": "motown",
-//     "data-destination": "Austin, TX",
-//     "data-firsttraintime": "0500",
-//     "data-frequency": "30"
-//   },
-//   "Uptown": {
-//     "data-name": "uptown",
-//     "data-destination": "Austin, TX",
-//     "data-firsttraintime": "1000",
-//     "data-frequency": "20"
-//   },
-//   "Downtown": {
-//     "data-name": "downtown",
-//     "data-destination": "Austin, TX",
-//     "data-firsttraintime": "0700",
-//     "data-frequency": "40"
-//   },
-//   "Central Expressway": {
-//     "data-name": "centralexpressway",
-//     "data-destination": "Austin, TX",
-//     "data-firsttraintime": "0830",
-//     "data-frequency": "15"
-//   },
-//   "AngieBus": {
-//     "data-name": "angiebus",
-//     "data-destination": "Vienna, Austria",
-//     "data-firsttraintime": "1100",
-//     "data-frequency": "30"
-//   },
-//   "Belleville": {
-//     "data-name": "belleville",
-//     "data-destination": "Paris, France",
-//     "data-firsttraintime": "0500",
-//     "data-frequency": "60"
-//   },
-//   "Bakerloo": {
-//     "data-name": "bakerloo",
-//     "data-destination": "Austin, TX",
-//     "data-firsttraintime": "0600",
-//     "data-frequency": "45"
-//   },
-//   "Piccadilly": {
-//     "data-name": "piccadilly",
-//     "data-destination": "Austin, TX",
-//     "data-firsttraintime": "0700",
-//     "data-frequency": "15"
-//   },
-
-
-
-
-}
 
 mydatabase.ref().set({
   "Trains": 
@@ -104,3 +46,6 @@ mydatabase.ref().set({
 
 });
     
+// mydatabase.ref().on("value", funtion(snapshot){
+
+// })
