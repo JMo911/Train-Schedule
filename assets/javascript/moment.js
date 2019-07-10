@@ -28,8 +28,8 @@ event.preventDefault();
 var trainName=$("#trainInput1").val().trim();
 var destination=$("#destination1").val().trim();
 var firstTrainTime=moment().format($("#trainTime1").val().trim(), "HH:mm");
-var frequency=$("#frequency1").val().trim();
-var possibleTrainTimes = [];
+var frequency=parseInt($("#frequency1").val().trim());
+// var possibleTrainTimes = [];
 
 // console.log(frequency);
 // console.log(firstTrainTime);
@@ -55,8 +55,7 @@ var newTrain = {
   trainName: trainName,
   destination: destination,
   firstTrainTime: firstTrainTime,
-  frequency: frequency,
-  possibleTrainTimes: possibleTrainTimes
+  frequency: frequency
 };
 
 mydatabase.ref().push(newTrain);
@@ -72,7 +71,7 @@ $("#frequency1").val("");
 })
 
 mydatabase.ref().on("child_added", function(childSnapshot){
-  // console.log(childSnapshot.val());
+  console.log(childSnapshot.val());
 
   var dataTrainName = childSnapshot.val().trainName;
   var dataTrainDestination = childSnapshot.val().destination;
@@ -81,13 +80,14 @@ mydatabase.ref().on("child_added", function(childSnapshot){
   //grab the next arrival time in the future
   var firstTrainTime = childSnapshot.val().firstTrainTime; 
   //format first train time with momentJS
-  var firstTrainTimeFormatted = moment().format(firstTrainTime, "HH:mm");
+  // var firstTrainTimeFormatted = moment().format(firstTrainTime, "HH:mm");
 
 
-  var timeDifference = moment().diff(moment(firstTrainTimeFormatted), "minutes");
-  var remainingTime = timeDifference % childSnapshot.val().frequency;
-  var minAway = childSnapshot.val().frequency - remainingTime;
-  var nextArrival = moment().add(minAway, "minutes");
+  // var timeDifference = moment().diff(moment(firstTrainTimeFormatted), "minutes");
+  // // console.log(timeDifference);
+  // var remainingTime = timeDifference % childSnapshot.val().frequency;
+  // var minAway = childSnapshot.val().frequency - remainingTime;
+  // var nextArrival = moment().add(minAway, "minutes");
 
 
   //subtract next arrival time in the future from the present moment
@@ -95,8 +95,12 @@ mydatabase.ref().on("child_added", function(childSnapshot){
 
 
   // console.log(firstTrainTimeFormatted);
-  var diffbetweenpresentandfirsttrain = moment().diff(moment(firstTrainTimeFormatted, "HH:mm"), "minutes");
-// console.log(diffbetweenpresentandfirsttrain);
+  var diffbetweenpresentandfirsttrain = moment().diff(moment(firstTrainTime, "HH:mm"), "minutes");
+  console.log(diffbetweenpresentandfirsttrain);
+  var remainder = diffbetweenpresentandfirsttrain % dataFrequency;
+  console.log(remainder);
+  var mintillnextarrival = dataFrequency-remainder;
+  console.log(mintillnextarrival);
 
 
   var newRow = $("<tr>").append(
