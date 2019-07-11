@@ -71,7 +71,7 @@ $("#frequency1").val("");
 })
 
 mydatabase.ref().on("child_added", function(childSnapshot){
-  console.log(childSnapshot.val());
+  // console.log(childSnapshot.val());
 
   var dataTrainName = childSnapshot.val().trainName;
   var dataTrainDestination = childSnapshot.val().destination;
@@ -101,7 +101,10 @@ mydatabase.ref().on("child_added", function(childSnapshot){
   // console.log(remainder);
   var mintillnextarrival = dataFrequency-remainder;
   // console.log(mintillnextarrival);
-  var nextarrivaltime = moment().add(mintillnextarrival, 'minutes').calendar();
+  var nextarrivaltime = moment().add(mintillnextarrival, 'minutes');
+  var formattedarrival = moment(nextarrivaltime).format("HH:mm");
+  console.log(formattedarrival);
+
 
 
   var newRow = $("<tr>").append(
@@ -109,7 +112,7 @@ mydatabase.ref().on("child_added", function(childSnapshot){
     $("<td>").text(dataTrainDestination),
     $("<td>").text(dataFrequency),
     //next arrival time
-    $("<td>").text(nextarrivaltime),
+    $("<td>").text(formattedarrival),
     //min away
     $("<td>").text(mintillnextarrival)
   );
