@@ -96,11 +96,12 @@ mydatabase.ref().on("child_added", function(childSnapshot){
 
   // console.log(firstTrainTimeFormatted);
   var diffbetweenpresentandfirsttrain = moment().diff(moment(firstTrainTime, "HH:mm"), "minutes");
-  console.log(diffbetweenpresentandfirsttrain);
+  // console.log(diffbetweenpresentandfirsttrain);
   var remainder = diffbetweenpresentandfirsttrain % dataFrequency;
-  console.log(remainder);
+  // console.log(remainder);
   var mintillnextarrival = dataFrequency-remainder;
-  console.log(mintillnextarrival);
+  // console.log(mintillnextarrival);
+  var nextarrivaltime = moment().add(mintillnextarrival, 'minutes').calendar();
 
 
   var newRow = $("<tr>").append(
@@ -108,9 +109,9 @@ mydatabase.ref().on("child_added", function(childSnapshot){
     $("<td>").text(dataTrainDestination),
     $("<td>").text(dataFrequency),
     //next arrival time
-    // $("<td>").text(moment(nextArrival).format("HH:mm")),
+    $("<td>").text(nextarrivaltime),
     //min away
-    // $("<td>").text(minAway)
+    $("<td>").text(mintillnextarrival)
   );
 
   $("#trainTable > tbody").append(newRow);
